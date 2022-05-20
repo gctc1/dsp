@@ -1,17 +1,17 @@
 clc
 clear all
 close all
-x=[1 2 3 4 5]
-N=5
-d=3
-n=[0:1:N-1]
-l=3
+x=input('ENTER THE SEQUENCE')
+n=input('ENTER THE time insatnces')
+l=input('ENTER THE interpolation factor')
 j=1
 for i=2:length(n)
     z(j)=x(i)
     j=j+l
 end
-y=z(1:d:length(z))
+d=input('ENTER THE decimation factor')
+
+y=z(1:d:length(z)-1)
 n1=1:length(z)
 n11=1:length(y)
 subplot(3,1,1)
