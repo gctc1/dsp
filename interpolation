@@ -1,0 +1,17 @@
+clc
+clear all
+close all
+x=input('ENTER THE SEQUENCE')
+N=input('ENTER THE time insatnces')
+l=input('ENTER THE interpolation factor')
+n=[0:1:N-1]
+j=1
+for i=1:length(x)
+    y(j)=x(i)
+    j=j+l
+end
+n1=0:max(n)*l
+subplot(2,1,1 )
+stem(n,x)
+subplot(2,1,2 )
+stem(n1,y)
