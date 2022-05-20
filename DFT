@@ -1,0 +1,39 @@
+clc;
+clear all;
+close all;
+N = input('Enter Sample = ');
+n = 0:(N-1);
+k = 0:(N-1);
+%is frequency
+x = input('Enter x(n) values (Amplitude) = ');
+x = [x zeros(1,N-length(x))];
+Wn = exp((-1*j*2*pi)/N)
+Kn = n'*k
+Wk = Wn.^Kn
+xk = x*Wk
+%x(n)
+subplot(4,1,1);
+stem(n,x);
+xlabel('Time');
+ylabel('x(n)');
+title('Time Domain');
+%X(K)
+subplot(4,1,2);
+stem(k,xk);
+xlabel('Frequency');
+ylabel('X(K)');
+title('Frequency Domain');
+%Magnitude of X(k)
+M = abs(xk);
+subplot(4,1,3);
+stem(k,M);
+xlabel('Frequency');
+ylabel('Magnitude');
+title('Magnitude Spectrum');
+%Phase of X(k)
+P = (angle(xk)*180)/pi;
+subplot(4,1,4);
+stem(k,P);
+xlabel('Frequency');
+ylabel('Phase');
+title('Phase Spectrum');
