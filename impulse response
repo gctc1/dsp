@@ -1,0 +1,17 @@
+a=input('Enter Input Coefficients = ');
+b=input('Enter Output coefficients = ');
+n=0:1:100;
+x=zeros(1,length(n));
+i=find(n==0);
+x(i)=1;
+y=filter(a,b,x);
+subplot(2,1,1);
+stem(n,x);
+xlabel('Time');
+ylabel('Amplitude');
+title('Impluse');
+subplot(2,1,2);
+stem(n,y);
+xlabel('Time');
+ylabel('Amplitude');
+title('Impluse Response');

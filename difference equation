@@ -1,0 +1,26 @@
+clc;
+clear all;
+close all;
+fs = input('Enter Sampling Frequency = ');
+a = input('Enter Coeff. values of excitation (input coeff.) = ');
+b = input('Enter Coeff. values of responses (output coeff.) = ');
+w = 0:(2*pi)/fs:2*pi;
+l = 0 : length(a)-1;
+m = 0 : length(b)-1;
+N = a*exp(-j*l'*w);
+D = b*exp(-j*m'*w);
+H = N./D;
+%Magnitude of X(k)
+M = abs(H);
+subplot(2,1,1);
+plot(w/2*pi,M);
+xlabel('Frequency');
+ylabel('Magnitude');
+title('Magnitude Spectrum');
+%Phase of X(k)
+P = angle(H);
+subplot(2,1,2);
+plot(w/2*pi,P);
+xlabel('Frequency');
+ylabel('Phase');
+title('Phase Spectrum');

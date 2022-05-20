@@ -1,0 +1,25 @@
+  clc;
+clear all;
+close all;
+f = input('Enter frequency = ');
+fs = input('Enter sampling frequency = ');
+w = (2*pi*f)/fs;
+a = input('Enter input coeff. = ');
+b = input('Enter Output coeff. = ');
+n = 0 : f/fs : f;
+x = zeros(1,length(n));
+x(find(n==0))=1;
+y=filter(a,b,x);
+plot(n,y);
+xlabel('Time');
+ylabel('Y(n)');
+title('Sine/cosine wave Generation using Recusive DE');
+%Output:
+Enter frequency =
+7
+Enter sampling frequency =
+200
+Enter input coeff. =
+[0 sin(w)]
+Enter Output coeff. =
+[1 -2*cos(w) 1]

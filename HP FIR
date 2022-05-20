@@ -1,0 +1,53 @@
+clc;
+clear all;
+close all;
+wp = input('Enter pass band frequency = ');
+ws = input('Enter stop band frequency = ');
+tw = wp-ws
+wc=(wp+ws)/2
+N=ceil(6.6*pi/tw)
+alpha=(N-1)/2
+n=0:N-1
+for i=0:N-1
+if i==alpha
+hd(i+1)=1-(wc/pi)
+else
+hd(i+1)=-(sin(wc*(i-alpha)))/(pi*(i-alpha))
+end
+end
+%choose type window
+wi=hamming(N)
+hn=hd.*wi'
+L=(N-1)/2
+a=[hn(L+1) 2*hn(L:-1:1)]'
+n1=0:L
+w1=input('enter no. of frequency samples = ')
+w=[0:w1]'*pi/w1
+hr=cos(w*n1)*a
+mag=abs(hr)
+phase=angle(hr)
+subplot(5,1,1);
+stem(n,hd);
+xlabel('Time');
+ylabel('Mag');
+title('hd');
+subplot(5,1,2);
+stem(n,wi);
+xlabel('Time');
+ylabel('Mag');
+title('hamming window');
+subplot(5,1,3);
+stem(n,hn);
+xlabel('Time');
+ylabel('Mag');
+title('finite response');
+subplot(5,1,4);
+stem(w,mag);
+xlabel('Time');
+ylabel('Mag');
+title('mag. of hr');
+subplot(5,1,5);
+stem(w,phase);
+xlabel('Time');
+ylabel('phase');
+title('phase of hr');

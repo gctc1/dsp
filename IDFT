@@ -1,0 +1,26 @@
+clc;
+clear all;
+close all;
+N = input('Enter Sample = ');
+n = 0:(N-1);
+k = 0:(N-1);
+%is frequency
+xk = input('Enter X(k) values (Amplitude) = ');
+xk = [xk zeros(1,N-length(xk))];
+Wn = exp((j*2*pi)/N)
+Kn = n'*k
+Wk = Wn.^Kn
+x = (xk*Wk)/N
+%x(n)
+subplot(2,1,1);
+stem(n,x);
+xlabel('Time');
+ylabel('x(n)');
+title('Time Domain');
+%IDFT
+%X(K)
+subplot(2,1,2);
+stem(k,xk);
+xlabel('Frequency');
+ylabel('X(K)');
+title('Frequency Domain');

@@ -1,0 +1,27 @@
+clc;
+clear all;
+close all;
+f = input('Enter Frequency = ');
+w = 0:(2*pi)/f:2*pi;
+x = zeros(1,length(w));
+y = zeros(1,length(w));
+H = zeros(1,length(w));
+for i = 1 : length(w)
+y(i) = 1.55 +(1.95*exp(-1*j*w(i))) +(2.15*exp(-2*j*w(i)));
+x(i) = 1-(0.25*exp(-j*w(i)))+(0.45*exp(-2*j*w(i)));
+H(i) = y(i)/x(i);
+end
+%Magnitude of X(k)
+M = abs(H);
+subplot(2,1,1);
+plot(w/2*pi,M);
+xlabel('Frequency');
+ylabel('Magnitude');
+title('Magnitude Spectrum');
+%Phase of X(k)
+P = angle(H);
+subplot(2,1,2);
+plot(w/2*pi,P);
+xlabel('Frequency');
+ylabel('Phase');
+title('Phase Spectrum');
