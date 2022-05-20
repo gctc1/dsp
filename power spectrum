@@ -1,0 +1,42 @@
+clc;
+clear all;
+close all;
+f1 = input('Enter Frequency1 = ');
+f2 = input('Enter Frequency2 = ');
+fs1 = input('Enter the Number of sample = ');
+n = 0:fs1-1;
+x = cos(pi*f1*n)+cos(pi*f2*n);
+fs2 = input('Enter the number of samples of x to be considered = ');
+n2 = 0:fs2-1;
+x1 = x(1:fs2);
+N = input('Enter the N - point DFT = ');
+if length(x)<N
+x1 = [x zeros(1,N-length(x))];
+n2 = [n2 max(n2)+1:N-1];
+end
+Y=fft(x1);
+P = (1/N)*abs(Y).^2;
+%x(n)
+subplot(4,1,1);
+plot(n,x);
+xlabel('Time');
+ylabel('x(n)');
+title('Given DTFT Sequence');
+%DTFT selected
+subplot(4,1,2);
+plot(n2,x1);
+xlabel('Time');
+ylabel('x(n)');
+title('DTFT Sequence for selected number of sequence');
+%Power Spectrum
+subplot(4,1,3);
+plot((2*n2)/N,P);
+xlabel('Time');
+ylabel('Amplitude');
+title('Power Spectrum ');
+%Power Spectrum in Decibels
+subplot(4,1,4);
+plot((2*n2)/N,10*log10(P));
+xlabel('Time');
+ylabel('Amplitude');
+title('Power Spectrum in Decibels');
